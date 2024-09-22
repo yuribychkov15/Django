@@ -1,0 +1,10 @@
+<!-- quotes/templates/quotes/quote.html -->
+{% extends "quotes/base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- image and quote -->
+    <img src="{% static image_selected %}" alt="Quote Image" class="quote-image">
+    <p class="quote">"{{ quote_selected }}"</p>
+
+{% endblock %}

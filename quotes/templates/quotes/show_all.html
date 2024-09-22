@@ -1,0 +1,22 @@
+<!-- quotes/templates/quotes/show_all.html -->
+{% extends "quotes/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <h2>All Quotes</h2>
+    <ul>
+        <!-- loop through all of the quotes -->
+        {% for quote in quotes %}
+            <li><p class="quote">"{{ quote }}"</p></li>
+        {% endfor %}
+    </ul>
+
+    <h2>All Images</h2>
+    <ul>
+        <!-- loop through all of the images -->
+        {% for image in images %}
+            <li><img src="{% static image %}" alt="Quote Image" class="quote-image"></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
