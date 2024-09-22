@@ -68,13 +68,7 @@ TEMPLATES = [
         },
     },
 ]
-
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
-
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
 WSGI_APPLICATION = 'cs412.wsgi.application'
 
