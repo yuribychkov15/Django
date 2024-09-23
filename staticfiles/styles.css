@@ -1,0 +1,61 @@
+body {
+    background-color: rgb(255, 229, 162);
+    color: rgb(255, 86, 129);
+}
+
+table {
+    border: 1px solid white;
+}
+
+td {
+    border: 1px solid white;
+    text-align: center;
+}
+
+/* https://getcssscan.com/blog/how-to-remove-bullets-from-li-css removing the bullet points from the list*/
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox for displaying the listed items in the center */
+    display: flex; 
+    justify-content: center; 
+    gap: 30px; 
+    font-weight: bold;
+}
+
+nav ul li a {
+    color: rgb(255, 86, 129);
+}
+
+header {
+    text-align: center;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+/* https://www.w3schools.com/howto/howto_css_image_center.asp for centering image */
+img.quote-image {
+    width: 300px;
+    height: 300px;
+    display: block;
+    margin: auto;
+    border-radius: 5%;
+    padding-bottom: 10px;
+}
+
+.quote {
+    text-align: center;
+    color: rgb(255, 86, 129);
+    font-size: 20px;
+}
+
+ul {
+    list-style: none;
+  }
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+}
