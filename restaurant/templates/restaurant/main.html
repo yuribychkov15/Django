@@ -1,0 +1,21 @@
+<!-- restaurant/templates/restaurant/main.html -->
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="main-page">
+    <!-- page to show restaurant information like times and location -->
+    <h2>Welcome to Shah's Halal</h2>
+
+    <p>Location: 1124 Boylston St, Boston, MA 02115</p>
+    <p>Hours of Operation:</p>
+
+    <ul>
+        <li>Sunday-Thursday: 10:00 AM - 12:00 AM</li>
+        <li>Friday-Saturday: 10:00 AM - 2:00 AM</li>
+    </ul>
+
+    <img src="{% static 'restaurant/shahs.jpg' %}" alt="Shah's Halal Image">
+</div>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+body {
+    font-family:'Times New Roman', Times, serif;
+}
+
+/* Centering our items */
+
+.order-page, .main-page {
+    /* https://www.w3schools.com/css/css3_flexbox.asp */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+
+.confirmation-page {
+    /* https://www.w3schools.com/css/css3_flexbox.asp */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+
+/* Organize form page, specify a margin bottom for all of our options  */
+
+.order-page h2 {
+    margin-bottom: 20px;
+}
+
+/* Add bottom margin spacing in our forms */
+
+.order-page .form-group {
+    margin-bottom: 20px;
+}
+
+/* Add a nice button design with a darker orange color compared to our header */
+
+.order-page button {
+    background-color: #ff5219;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+header {
+    background-color: #d78131;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Sizing down our image and centering it with a nice round border */
+img {
+    width: 80%;
+    height: 80%;
+    display: block;
+    margin: auto;
+    border-radius: 5%;
+    padding-bottom: 10px;
+}
+
+/* Don't want the bullet points to be visible */
+.main-page ul, .confirmation-page ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+/* https://www.w3schools.com/css/css3_flexbox.asp */
+header nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Make our header nav items one one line */
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+    color: white;
+}
+
+nav ul li a {
+    color: white;
+}
+
+footer {
+    padding: 10px 0;
+    text-align: center;
+}
+
+

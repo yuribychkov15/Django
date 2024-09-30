@@ -1,0 +1,23 @@
+<!-- restaurant/templates/restaurant/confirmation.html -->
+
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="confirmation-page">
+    <!-- confirmation page to show the ready time, items ordered, customer information and any instructions -->
+    <h2>Order Confirmation</h2>
+    <p>Thank you, {{ customer_name }}!</p>
+    <p>Your order has been placed and will be ready by {{ ready_time }}</p>
+    <p>Items Ordered:</p>
+    <ul>
+        <!-- for loop to display all of the times the user clicked on -->
+        {% for item in items_ordered %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    <p>Total Price: ${{ total_price }}</p>
+    <p>Special Instructions: {{ special_instructions }}</p>
+    <p>We will contact you at {{ customer_phone }} or {{ customer_email }} if we have any concerns.</p>
+</div>
+{% endblock %}

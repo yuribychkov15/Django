@@ -1,0 +1,77 @@
+<!-- restaurant/templates/restaurant/order.html -->
+
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="order-page">
+    <h2>Order Food</h2>
+    <!-- POST our form to use in our views -->
+    <form method="post" action="{% url 'confirmation' %}">
+        {% csrf_token %}
+        <!-- items, specify name as item_price -->
+        <div class="form-group">
+            <label>
+                <input type="checkbox" name="items" value="Chicken Over Rice"> Chicken Over Rice - $16
+                <input type="hidden" name="Chicken Over Rice_price" value="16">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" name="items" value="Chicken Gyro"> Chicken Gyro - $13
+                <input type="hidden" name="Chicken Gyro_price" value="13">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" name="items" value="French Fries"> French Fries - $4
+                <input type="hidden" name="French Fries_price" value="4">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" name="items" value="Baklava"> Baklava - $3
+                <input type="hidden" name="Baklava_price" value="3">
+            </label>
+        </div>
+        
+        <!-- daily special -->
+        <div class="form-group">
+            <h2>Daily Special - It's piping hot!</h2>
+            <label>
+                <input type="checkbox" name="items" value="{{ daily_special }}"> {{ daily_special }} - ${{ daily_special_price }}
+                <input type="hidden" name="{{ daily_special }}_price" value="{{ daily_special_price }}">
+            </label>
+        </div>
+
+        <!-- special instructions -->
+        <div class="form-group">
+            <h2>Let us know if you want anything specific!</h2>
+            <label>
+                Special Instructions: <textarea name="instructions"></textarea>
+            </label>
+        </div>
+
+        <!-- customer information -->
+        <h2>Let us know your information!</h2>
+        <div class="form-group">
+            <label>
+                Name: <input type="text" name="name" required>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                Phone: <input type="text" name="phone" required>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                Email: <input type="email" name="email" required>
+            </label>
+        </div>
+
+        <!-- submit button -->
+        <button type="submit">Submit Order</button>
+    </form>
+</div>
+{% endblock %}
