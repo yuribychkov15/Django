@@ -7,4 +7,5 @@ from django.contrib import admin
 from .models import *
 # Register your models here.
 
+# so we can see it in the admin 
 admin.site.register(Profile)

@@ -7,8 +7,9 @@ from django.views.generic import ListView
 from .models import * # import all of the models
 
 # class-based view 
-class ShowAllView(ListView):
-    '''the view to show all articles'''
+# inherits from ListView
+class ShowAllProfileViews(ListView):
+    '''the view to show all profiles'''
     model = Profile
-    template_name = "mini_fb/show_all.html"
+    template_name = "mini_fb/show_all_profiles.html"
     context_object_name = "profiles"

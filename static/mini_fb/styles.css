@@ -1,80 +1,49 @@
-/* This CSS was derived from NetNinja's multi-column grid example. */
-
+/* static/css/styles.css */
+/* Keeping the main colors for mini fb a blue palette */
 body {
-    margin: 30px;
-    background: #d1dedd;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #71b8ff;
 }
 
-ul, li {
-    padding: 0px;
-    list-style-type: none;
+/* Footer and table header should be same color */
+footer {
+    background-color: #2691fd;
+    padding: 1em;
+    text-align: center;
 }
 
-h1, h2, h3 {
-    color: #767f7e;
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+/* Footer and table header should be same color */
+thead th {
+    background-color: #2691fd;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
 }
 
-p {
-    color: #828b82;
+h1 {
+    color: #F8F9FA;
 }
 
-header {
-    max-width: 1200px;
-    margin: 40px auto;
-    border-bottom: 1px solid #bbc7c7;
-}
-.grid-container {
-    background: #eee;
-    max-width: 900px;
-    display: grid;
-    /* grid-template-columns: 300px 300px 300px; */
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    max-width: 1200px;
-    margin: 20px auto;
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
 }
 
-profile.featured {
-    grid-column: span 3;
-    display: grid; /* nested grid */
-    gap: 60px;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    border-bottom: 1px #bbc7c7;
-    padding-bottom: 40px;
+/* Make our profile images circular and a nice blue border around it */
+img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #2691fd;
+    border-radius: 50%;
 }
 
-profile img, profile.featured img {
-    width: 50%;
-    border: 4px solid #fff;
-    border-radius: 8px;
-}
-profile p, profile h3 {
-    margin: 20px 10px;
-
-}
-
-nav li {
-    display: inline;
-}
-/* responsive styles: adapt to smaller screen sizes */
-@media screen and (max-width: 980px) {
-
-    profile {
-        grid-column: span 3;
-        display: grid; /* nested grid */
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: center;
-    }
-}
-
-@media screen and (max-width: 760px) {
-
-    profile, profile.featured {
-        
-        display: block; 
-        margin: 0px 20px;
-    }
+th {
+    background-color: #f2f2f2;
 }
