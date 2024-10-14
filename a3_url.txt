@@ -1,1 +1,1 @@
-https://young-depths-17182-3dc0071ad220.herokuapp.com/quote
+https://young-depths-17182-3dc0071ad220.herokuapp.com/quotes

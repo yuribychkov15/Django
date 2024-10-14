@@ -22,8 +22,16 @@
     <tbody>
         {% for profile in profiles %}
         <tr>
-            <td><img src="{{ profile.image_url }}" alt="{{ profile.first_name }}"></td>
-            <td>{{ profile.first_name }}</td>
+            <td>
+                <a href="{% url 'show_profile' profile.pk %}">
+                    <img src="{{ profile.image_url }}" alt="{{ profile.first_name }}">
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'show_profile' profile.pk %}">
+                    {{ profile.first_name }}
+                </a>
+            </td>
             <td>{{ profile.last_name }}</td>
             <td>{{ profile.city }}</td>
         </tr>
