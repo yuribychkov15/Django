@@ -1,0 +1,43 @@
+<!-- mini_fb/templates/mini_fb/create_profile_form.html
+Page is used to create an entirely new profile -->
+
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+    <h1>Create a Profile</h1>
+    <p>Fill in the form below to create your new profile.</p>
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="{{ form.first_name.label }}">First Name</label>
+            {{ form.first_name }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.last_name.label }}">Last Name</label>
+            {{ form.last_name }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.city.label }}">City</label>
+            {{ form.city }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.email.label }}">Email</label>
+            {{ form.email }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.image_url.label }}">Image URL</label>
+            {{ form.image_url }}
+        </div>
+        
+        <!-- https://www.w3schools.com/jsref/met_his_back.asp for the cancel button-->
+        <div class="button-container">  
+            <button type="submit">Create Profile!</button>
+            <button type="button" onclick="history.back()">Cancel</button>
+        </div>
+    </form>
+{% endblock %}
