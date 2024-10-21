@@ -29,7 +29,7 @@ Page is used to show a singular profile -->
             <div class="status-message">
                 <strong>{{ status.timestamp }}</strong>: {{ status.message }}
                 {% for img in status.get_images %}
-                    <img src="{{ img.image_file.url }}" alt="Image">
+                    <img src="{{ img.image_file.url }}" alt="{{ img.image_file.url }}">
                 {% endfor %}
                 <div class="status-message-buttons">
                     <a href="{% url 'update_status' status.pk %}" class="nav-button">Update Status</a>
