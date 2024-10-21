@@ -1,8 +1,11 @@
+<!-- mini_fb/templates/mini_fb/show_profile.html
+Page is used to show a singular profile -->
+
 {% extends 'mini_fb/base.html' %}
 
 {% block content %}
     <h1>{{ profile.first_name }} {{ profile.last_name }}</h1>
-    <img src="{{ profile.image_url }}" alt="{{ profile.first_name }}" style="width:300px;height:auto;">
+    <img src="{{ profile.image_url }}" style="width:300px; height:300px;">
     <table>
         <tr>
             <th>Email</th>
@@ -17,6 +20,8 @@
             <td>{{ profile.city }}</td>
         </tr>
     </table>
+
+    <a href="{% url 'update_profile' profile.pk %}" class="nav-button">Update Profile</a>
 
     <h2>Status Messages</h2>
     <div>
