@@ -15,6 +15,7 @@ class Profile(models.Model):
     city = models.TextField(blank=False)
     email = models.TextField(blank=True)
     image_url = models.URLField(blank=True)
+    age = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         '''Return a string representation of the object'''
@@ -38,3 +39,16 @@ class StatusMessage(models.Model):
     def __str__(self):
         '''Return a string representation of the object'''
         return f'{self.message} {self.timestamp} {self.profile}'
+    
+    def get_images(self):
+        return self.images.all()
+    
+class Image(models.Model):
+    ''' Encapsulate the idea of one Image that is not a URL '''
+    image_file = models.ImageField(upload_to='images/')
+    timestamp = models.DateTimeField(default=timezone.now)
+    status_message = models.ForeignKey('StatusMessage', on_delete=models.CASCADE, related_name='images')
+
+    def __str__(self):
+        '''Return a string representation of the object'''
+        return f'{self.image_file} {self.timestamp} {self.status_message}'

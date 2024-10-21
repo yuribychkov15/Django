@@ -14,5 +14,7 @@ urlpatterns = [
     path("restaurant/", include("restaurant.urls")), # delegate work to the restaurant url
     path("blog/", include("blog.urls")), # delegate work to the restaurant url
     path("mini_fb/", include("mini_fb.urls")), # delegate work to the mini_fb url
-] + static(settings.STATIC_URL,
-           document_root=settings.STATIC_ROOT)
+] 
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,14 +5,19 @@ Page is used to create a status message -->
 
 {% block content %}
     <h1>Post a Status Message</h1>
-    <form method="post">
+
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        
         <div class="form-group">
-            <label for="{{ form.message.label }}">Message</label>
+            <label for="{{ form.message.id_for_label }}">Message:</label>
             {{ form.message }}
         </div>
-        
-        <button type="submit">Post Status</button>
+        <div class="form-group">
+            <input type="file" name="files" multiple />
+        </div>
+        <div class="form-group">
+            <button type="submit">Post Status</button>
+        </div>
     </form>
+
 {% endblock %}

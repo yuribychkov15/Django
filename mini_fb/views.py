@@ -47,11 +47,16 @@ class CreateStatusMessageView(CreateView):
         return context
     
     def form_valid(self, form):
-        # find Profile identified by the PK from the URL pattern
-        profile = Profile.objects.get(pk=self.kwargs['pk'])
-        # attach the Profile to the instance of the Message to set its FK
-        form.instance.profile = profile
-        # delefate work to superclass version of this method
+        # set profile for status message
+        form.instance.profile = Profile.objects.get(pk=self.kwargs['pk'])
+        # save status message to db 
+        sm = form.save()
+        # look at files from form
+        files = self.request.FILES.getlist('files')
+        # need image object
+        for file in files:
+            image = Image(image_file=file, status_message=sm)
+            image.save()
         return super().form_valid(form)
     
     def get_success_url(self):

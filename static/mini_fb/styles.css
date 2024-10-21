@@ -15,6 +15,23 @@ footer {
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table, th, td {
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+th {
+    background-color: #e0e0e0;
+    font-weight: bold;
 }
 /* Footer and table header should be same color */
 thead th {
@@ -36,9 +53,17 @@ th, td {
 .form-group {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     margin-bottom: 15px;
 }
+
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
 
 /* Make our profile images circular and a nice blue border around it */
 img {
@@ -50,6 +75,7 @@ img {
     border: 2px solid #2691fd;
     border-radius: 50%;
 }
+
 
 th {
     background-color: #f2f2f2;
@@ -76,4 +102,13 @@ button, .nav-button {
 .button-container {
     display: flex;
     justify-content: left;
+}
+
+.status-message {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
