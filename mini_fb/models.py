@@ -45,9 +45,9 @@ class StatusMessage(models.Model):
     
 class Image(models.Model):
     ''' Encapsulate the idea of one Image that is not a URL '''
-    image_file = models.ImageField(upload_to='images/')
+    image_file = models.ImageField(blank=True)
     timestamp = models.DateTimeField(default=timezone.now)
-    status_message = models.ForeignKey('StatusMessage', on_delete=models.CASCADE, related_name='images')
+    status_message = models.ForeignKey("StatusMessage", on_delete=models.CASCADE, related_name="images")
 
     def __str__(self):
         '''Return a string representation of the object'''

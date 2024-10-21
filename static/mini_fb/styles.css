@@ -57,6 +57,13 @@ th, td {
     margin-bottom: 15px;
 }
 
+.form-group2 {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-bottom: 15px;
+}
+
 
 label {
     font-weight: bold;
@@ -86,6 +93,7 @@ nav {
     margin: 20px 0;
 }
 
+/* make the nav buttons a dark blue color */
 button, .nav-button {
     font-family: 'Times New Roman', Times, serif;
     padding: 10px 15px;
@@ -110,5 +118,21 @@ button, .nav-button {
     padding: 10px;
     margin-bottom: 15px;
     background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-message-buttons {
+    margin-top: 10px;
+    text-align: right;
+    display: flex;
+}
+
+.delete-message {
+    margin-bottom: 20px;
+}
+
+.message-box {
+    border: 1px solid #71b8ff;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
 }

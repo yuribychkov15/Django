@@ -10,3 +10,4 @@ from .models import *
 # so we can see it in the admin 
 admin.site.register(Profile)
 admin.site.register(StatusMessage)
+admin.site.register(Image)

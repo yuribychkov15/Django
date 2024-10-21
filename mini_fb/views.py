@@ -7,6 +7,7 @@ from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
+from django.views.generic import DeleteView
 
 from .models import * # import all of the models
 from .forms import *
@@ -63,6 +64,7 @@ class CreateStatusMessageView(CreateView):
     def get_success_url(self):
         return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})
     
+# task 3
 class UpdateProfileView(UpdateView):
     '''the view to update a single profile'''
     model = Profile
@@ -71,3 +73,23 @@ class UpdateProfileView(UpdateView):
 
     def get_success_url(self):
         return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})
+    
+# task 4
+class DeleteStatusMessageView(DeleteView):
+    ''' the view to delete a status message from a profile'''
+    model = StatusMessage
+    template_name = 'mini_fb/delete_status_form.html'
+    context_object_name = 'status_message'
+
+    def get_success_url(self):
+        return reverse('show_profile', kwargs={'pk': self.object.profile.pk})
+
+class UpdateStatusMessageView(UpdateView):
+    '''the view to update a status message for a profile'''
+    model = StatusMessage
+    form_class = UpdateStatusMessageForm
+    template_name = 'mini_fb/update_status_form.html'
+    context_object_name = 'status_message'
+
+    def get_success_url(self):
+        return reverse('show_profile', kwargs={'pk': self.object.profile.pk})

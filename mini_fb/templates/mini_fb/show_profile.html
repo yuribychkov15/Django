@@ -27,10 +27,14 @@ Page is used to show a singular profile -->
     <div>
         {% for status in profile.get_status_messages %}
             <div class="status-message">
-                <strong>{{ status.timestamp|date:"Y-m-d H:i" }}</strong>: {{ status.message }}
+                <strong>{{ status.timestamp }}</strong>: {{ status.message }}
                 {% for img in status.get_images %}
-                    <img src="{{ img.image_file.url }}" alt="Image for {{ status.message }}">
+                    <img src="{{ img.image_file.url }}" alt="{img.image_file.url}">
                 {% endfor %}
+                <div class="status-message-buttons">
+                    <a href="{% url 'update_status' status.pk %}" class="nav-button">Update Status</a>
+                    <a href="{% url 'delete_status' status.pk %}" class="nav-button">Delete Status</a>
+                </div>
             </div>
         {% empty %}
             <p>No status messages available.</p>
