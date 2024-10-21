@@ -57,7 +57,9 @@ class CreateStatusMessageView(CreateView):
         files = self.request.FILES.getlist('files')
         # need image object
         for file in files:
-            image = Image(image_file=file, status_message=sm)
+            image = Image()
+            image.image = file
+            image.status_message = sm
             image.save()
         return super().form_valid(form)
     
