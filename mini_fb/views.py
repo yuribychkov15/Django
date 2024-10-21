@@ -57,9 +57,7 @@ class CreateStatusMessageView(CreateView):
         files = self.request.FILES.getlist('files')
         # need image object
         for file in files:
-            image = Image()
-            image.image = file
-            image.status_message = sm
+            image = Image(image_file=file, status_message=sm)
             image.save()
         return super().form_valid(form)
     
@@ -87,7 +85,7 @@ class DeleteStatusMessageView(DeleteView):
         return reverse('show_profile', kwargs={'pk': self.object.profile.pk})
 
 class UpdateStatusMessageView(UpdateView):
-    '''the view to update a status message for a profile'''
+    ''' the view to update a status message for a profile'''
     model = StatusMessage
     form_class = UpdateStatusMessageForm
     template_name = 'mini_fb/update_status_form.html'
