@@ -29,6 +29,15 @@ class Profile(models.Model):
         '''Return a URL to display this profile'''
         return reverse('show_profile', kwargs={'pk': self.pk})
     
+    def add_friend(self, other):
+        if self != other:
+            # check if relationship already exists
+            if not Friend.objects.filter(
+                models.Q(profile1=self, profile2=other) | models.Q(profile1=other, profile2=self)
+            ).exists():
+                # create new friendship
+                Friend.objects.create(profile1=self, profile2=other)
+    
     def get_friends(self):
         # get the friendships
         friends1 = Friend.objects.filter(profile1=self).values_list('profile2', flat=True)
@@ -38,6 +47,14 @@ class Profile(models.Model):
         # get Profile instance
         friends = Profile.objects.filter(id__in=friend_ids)
         return list(friends)
+    
+    def get_friend_suggestions(self):
+        # get all profiles except self and current friends
+        current_friends = self.get_friends()
+        suggestions = Profile.objects.exclude(
+            models.Q(id=self.id) | models.Q(id__in=[friend.id for friend in current_friends])
+        )
+        return suggestions
     
 class StatusMessage(models.Model):
     ''' Encapsulate the idea of one Status Message '''

@@ -28,9 +28,10 @@ Page is used to show a singular profile -->
         {% if profile.get_friends %}
             <ul style="list-style-type: none; padding: 0; display: flex; gap: 10px;">
                 {% for friend in profile.get_friends %}
-                    <li>
+                    <li style="text-align: center;">
+                        <p>{{ friend.first_name }} {{ friend.last_name }}</p>
                         <a href="{% url 'show_profile' friend.id %}">
-                            <img src="{{ friend.image_url }}" alt="{{ friend.first_name }} {{ friend.last_name }}" style="width:100px; height:100px; border-radius:50%;">
+                            <img src="{{ friend.image_url }}" alt="{{ friend.first_name }} {{ friend.last_name }}" style="width:150px; height:150px; border-radius:50%;">
                         </a>
                     </li>
                 {% endfor %}
@@ -38,6 +39,10 @@ Page is used to show a singular profile -->
         {% else %}
             <p>This user has no friends yet.</p>
         {% endif %}
+    </div>
+
+    <div>
+        <a href="{% url 'friend_suggestions' profile.pk %}" class="nav-button">View Friend Suggestions</a>
     </div>
 
     <h2>Status Messages</h2>

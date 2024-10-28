@@ -1,6 +1,7 @@
 # mini_fb/views.py
 # define the views for the mini_fb app
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect
 
 # Create your views here.
 from django.views.generic import ListView
@@ -8,6 +9,7 @@ from django.views.generic import DetailView
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
+from django.views.generic import View
 
 from .models import * # import all of the models
 from .forms import *
@@ -93,3 +95,20 @@ class UpdateStatusMessageView(UpdateView):
 
     def get_success_url(self):
         return reverse('show_profile', kwargs={'pk': self.object.profile.pk})
+    
+class CreateFriendView(View):
+    ''' the view to add a friend to a proifle '''
+    def dispatch(self, request, *args, **kwargs):
+        profile = get_object_or_404(Profile, pk=kwargs['pk'])
+        other = get_object_or_404(Profile, pk=kwargs['other_pk'])
+        profile.add_friend(other)
+        return redirect('show_profile', pk=profile.pk)
+    
+class ShowFriendSuggestionsView(DetailView):
+    model = Profile
+    template_name = 'mini_fb/friend_suggestions.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['suggestions'] = self.object.get_friend_suggestions()
+        return context
