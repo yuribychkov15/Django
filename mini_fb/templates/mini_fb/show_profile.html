@@ -23,6 +23,23 @@ Page is used to show a singular profile -->
 
     <a href="{% url 'update_profile' profile.pk %}" class="nav-button">Update Profile</a>
 
+    <div>
+        <h2>{{ profile.first_name }}'s Friends</h2>
+        {% if profile.get_friends %}
+            <ul style="list-style-type: none; padding: 0; display: flex; gap: 10px;">
+                {% for friend in profile.get_friends %}
+                    <li>
+                        <a href="{% url 'show_profile' friend.id %}">
+                            <img src="{{ friend.image_url }}" alt="{{ friend.first_name }} {{ friend.last_name }}" style="width:100px; height:100px; border-radius:50%;">
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>This user has no friends yet.</p>
+        {% endif %}
+    </div>
+
     <h2>Status Messages</h2>
     <div>
         {% for status in profile.get_status_messages %}
