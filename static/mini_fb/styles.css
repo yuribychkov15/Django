@@ -136,3 +136,36 @@ button, .nav-button {
     padding: 10px;
     background-color: #f9f9f9;
 }
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.news-feed-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.news-feed-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+
+.news-feed-grid {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 10px;
+    align-items: start;
+}
+
+.profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.message-content {
+    margin: 5px 0;
+}

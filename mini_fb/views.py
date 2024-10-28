@@ -99,16 +99,31 @@ class UpdateStatusMessageView(UpdateView):
 class CreateFriendView(View):
     ''' the view to add a friend to a proifle '''
     def dispatch(self, request, *args, **kwargs):
+        # Use object manager to find the requisite Profile objects, and then call the Profile's add_friend
+        # https://www.geeksforgeeks.org/get_object_or_404-method-in-django-models/
         profile = get_object_or_404(Profile, pk=kwargs['pk'])
         other = get_object_or_404(Profile, pk=kwargs['other_pk'])
         profile.add_friend(other)
         return redirect('show_profile', pk=profile.pk)
     
 class ShowFriendSuggestionsView(DetailView):
+    ''' the view to show friend suggestions '''
     model = Profile
     template_name = 'mini_fb/friend_suggestions.html'
 
     def get_context_data(self, **kwargs):
+        # need to add friend suggestions to context
         context = super().get_context_data(**kwargs)
         context['suggestions'] = self.object.get_friend_suggestions()
+        return context
+    
+class ShowNewsFeedView(DetailView):
+    ''' the view to show our news feed '''
+    model = Profile
+    template_name = 'mini_fb/news_feed.html'
+
+    def get_context_data(self, **kwargs):
+        # add news feed to context
+        context = super().get_context_data(**kwargs)
+        context['news_feed'] = self.object.get_news_feed()
         return context

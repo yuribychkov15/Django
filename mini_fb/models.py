@@ -51,10 +51,21 @@ class Profile(models.Model):
     def get_friend_suggestions(self):
         # get all profiles except self and current friends
         current_friends = self.get_friends()
+        # do not include current friends of profile
+        # do not include Profile instance either
         suggestions = Profile.objects.exclude(
             models.Q(id=self.id) | models.Q(id__in=[friend.id for friend in current_friends])
         )
         return suggestions
+    
+    def get_news_feed(self):
+        # get profile friends
+        friends = self.get_friends()
+        # use the profile itself
+        profiles = [self] + friends
+        # get status message for profile and friends
+        news_feed = StatusMessage.objects.filter(profile__in=profiles).order_by('-timestamp')
+        return news_feed
     
 class StatusMessage(models.Model):
     ''' Encapsulate the idea of one Status Message '''
@@ -81,6 +92,7 @@ class Image(models.Model):
         return f'{self.image_file} {self.timestamp} {self.status_message}'
 
 class Friend(models.Model):
+    ''' Encapsulate the idea of a Friend '''
     profile1 = models.ForeignKey(Profile, related_name='profile1', on_delete=models.CASCADE)
     profile2 = models.ForeignKey(Profile, related_name='profile2', on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=timezone.now)
