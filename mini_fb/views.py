@@ -12,6 +12,7 @@ from django.views.generic import DeleteView
 from django.views.generic import View
 
 from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.contrib.auth.forms import UserCreationForm 
 
 from .models import * # import all of the models
 from .forms import *
@@ -31,11 +32,34 @@ class ShowProfilePageView(DetailView):
     template_name = "mini_fb/show_profile.html"
     context_object_name = "profile"
 
-class CreateProfileView(LoginRequiredMixin, CreateView):
+class CreateProfileView(CreateView):
     '''the view to create a single profile'''
     model = Profile
     form_class = CreateProfileForm
     template_name = "mini_fb/create_profile_form.html"
+
+    def get_context_data(self, **kwargs):
+        # call superclass method for context
+        context = super().get_context_data(**kwargs)
+        # add instance of UserCreationForm
+        context['user_create'] = UserCreationForm()
+        return context
+
+    def form_valid(self, form):
+        # remake UserCreationForm from POST data
+        user_form = UserCreationForm(self.request.POST)
+        # if valid
+        if user_form.is_valid():
+            # save user and add to profile
+            user = user_form.save()
+            form.instance.user = user
+            return super().form_valid(form)
+        else:
+            # if invalid
+            return self.render_to_response(self.get_context_data(form=form, user_form=user_form))
+    
+    def get_success_url(self):
+        return reverse('show_profile', kwargs={'pk': self.object.pk})
 
 class CreateStatusMessageView(LoginRequiredMixin, CreateView):
     '''the view to create a status message for a profile'''
