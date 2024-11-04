@@ -10,7 +10,7 @@ Page is used to suggest friends for a profile -->
             {% for suggestion in suggestions %}
                 <li style="text-align: center;">
                     <p>{{ suggestion.first_name }} {{ suggestion.last_name }}</p>
-                    <a href="{% url 'add_friend' object.pk suggestion.pk %}">
+                    <a href="{% url 'add_friend' suggestion.pk %}">
                         <img src="{{ suggestion.image_url }}" alt="{{ suggestion.first_name }} {{ suggestion.last_name }}" style="width:200px; height:200px; border-radius:50%;">
                         <p class="nav-button">Add Friend</p>
                     </a>

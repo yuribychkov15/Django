@@ -1,0 +1,9 @@
+<!-- mini_fb/templates/mini_fb/logged_out.html
+Page is used to show confirmation of logout for a user --> 
+
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+<h2>You have been logged out.</h2>
+<a href="{% url 'login' %}">Log in again</a>
+{% endblock %}
