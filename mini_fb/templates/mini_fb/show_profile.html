@@ -21,7 +21,10 @@ Page is used to show a singular profile -->
         </tr>
     </table>
 
-    <a href="{% url 'update_profile' profile.pk %}" class="nav-button">Update Profile</a>
+    {% if user.is_authenticated and user == profile.user %}
+        <a href="{% url 'update_profile' profile.pk %}" class="nav-button">Update Profile</a>
+        <a href="{% url 'create_status' profile.pk %}" class="nav-button">Create Status</a>
+    {% endif %}
 
     <div>
         <h2>{{ profile.first_name }}'s Friends</h2>
@@ -40,13 +43,14 @@ Page is used to show a singular profile -->
             <p>This user has no friends yet.</p>
         {% endif %}
     </div>
-
-    <div>
-        <a href="{% url 'friend_suggestions' profile.pk %}" class="nav-button">View Friend Suggestions</a>
-    </div>
-    <div style="margin-top: 10px;">
-        <a href="{% url 'news_feed' profile.pk %}" class="nav-button">View News Feed</a>
-    </div>
+    {% if user.is_authenticated and user == profile.user %}
+        <div>
+            <a href="{% url 'friend_suggestions' profile.pk %}" class="nav-button">View Friend Suggestions</a>
+        </div>
+        <div style="margin-top: 10px;">
+            <a href="{% url 'news_feed' profile.pk %}" class="nav-button">View News Feed</a>
+        </div>
+    {% endif %}
 
     <h2>Status Messages</h2>
     <div>
@@ -58,15 +62,18 @@ Page is used to show a singular profile -->
                         <img src="{{ img.image_file.url }}" alt="{{ img.image_file.url }}">
                     {% endfor %}
                 {% endif %}
-                <div class="status-message-buttons">
-                    <a href="{% url 'update_status' status.pk %}" class="nav-button">Update Status</a>
-                    <a href="{% url 'delete_status' status.pk %}" class="nav-button">Delete Status</a>
-                </div>
+                {% if user.is_authenticated and user == profile.user %}
+                    <div class="status-message-buttons">
+                        <a href="{% url 'update_status' status.pk %}" class="nav-button">Update Status</a>
+                        <a href="{% url 'delete_status' status.pk %}" class="nav-button">Delete Status</a>
+                    </div>
+                {% endif %}
             </div>
         {% empty %}
             <p>No status messages available.</p>
         {% endfor %}
     </div>
-
-    <a href="{% url 'create_status' profile.pk %}" class="nav-button">Post a Status Message</a>
+    {% if user.is_authenticated and user == profile.user %}
+        <a href="{% url 'create_status' profile.pk %}" class="nav-button">Post a Status Message</a>
+    {% endif %}
 {% endblock %}

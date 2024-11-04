@@ -11,6 +11,8 @@ from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.views.generic import View
 
+from django.contrib.auth.mixins import LoginRequiredMixin 
+
 from .models import * # import all of the models
 from .forms import *
 
@@ -29,13 +31,13 @@ class ShowProfilePageView(DetailView):
     template_name = "mini_fb/show_profile.html"
     context_object_name = "profile"
 
-class CreateProfileView(CreateView):
+class CreateProfileView(LoginRequiredMixin, CreateView):
     '''the view to create a single profile'''
     model = Profile
     form_class = CreateProfileForm
     template_name = "mini_fb/create_profile_form.html"
 
-class CreateStatusMessageView(CreateView):
+class CreateStatusMessageView(LoginRequiredMixin, CreateView):
     '''the view to create a status message for a profile'''
     model = StatusMessage
     form_class = CreateStatusMessageForm
@@ -67,7 +69,7 @@ class CreateStatusMessageView(CreateView):
         return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})
     
 # task 3
-class UpdateProfileView(UpdateView):
+class UpdateProfileView(LoginRequiredMixin, UpdateView):
     '''the view to update a single profile'''
     model = Profile
     form_class = UpdateProfileForm
@@ -77,7 +79,7 @@ class UpdateProfileView(UpdateView):
         return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})
     
 # task 4
-class DeleteStatusMessageView(DeleteView):
+class DeleteStatusMessageView(LoginRequiredMixin, DeleteView):
     ''' the view to delete a status message from a profile'''
     model = StatusMessage
     template_name = 'mini_fb/delete_status_form.html'
@@ -96,7 +98,7 @@ class UpdateStatusMessageView(UpdateView):
     def get_success_url(self):
         return reverse('show_profile', kwargs={'pk': self.object.profile.pk})
     
-class CreateFriendView(View):
+class CreateFriendView(LoginRequiredMixin, View):
     ''' the view to add a friend to a proifle '''
     def dispatch(self, request, *args, **kwargs):
         # Use object manager to find the requisite Profile objects, and then call the Profile's add_friend

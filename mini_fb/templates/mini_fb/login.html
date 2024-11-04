@@ -1,0 +1,15 @@
+<!-- mini_fb/templates/mini_fb/login.html
+Page is used to show login for a user --> 
+
+
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+<h1>Login</h1>
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="next" value="{% url 'show_all_profiles' %}">
+    <input type="submit" value="Login">
+</form>
+{% endblock %}
