@@ -5,10 +5,10 @@ Page is used to create an entirely new profile -->
 
 {% block content %}
     <h1>Create a Profile</h1>
+    <p>If you are redirected, it may be because the username or password is invalid. Please try again.</p>
     <p>Fill in the form below to create your new profile.</p>
     <form method="post">
         {% csrf_token %}
-        {{ user_form.as_p }} 
         
         <div class="form-group">
             <label for="id_username">Username</label>

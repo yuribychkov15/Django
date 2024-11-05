@@ -13,6 +13,7 @@ from django.views.generic import View
 
 from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.contrib.auth.forms import UserCreationForm 
+from django.contrib.auth import login
 
 from .models import * # import all of the models
 from .forms import *
@@ -53,10 +54,12 @@ class CreateProfileView(CreateView):
             # save user and add to profile
             user = user_form.save()
             form.instance.user = user
+            # log user in automatically if successful
+            login(self.request, user)
             return super().form_valid(form)
         else:
-            # if invalid
-            return self.render_to_response(self.get_context_data(form=form, user_form=user_form))
+            # render the form with errors
+            return redirect(reverse('create_profile'))
     
     def get_success_url(self):
         return reverse('show_profile', kwargs={'pk': self.object.pk})
@@ -96,7 +99,6 @@ class CreateStatusMessageView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('show_profile', kwargs={'pk': self.object.profile.pk})
     
-# task 3
 class UpdateProfileView(LoginRequiredMixin, UpdateView):
     '''the view to update a single profile'''
     model = Profile
@@ -109,7 +111,6 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('show_profile', kwargs={'pk': self.object.pk})
     
-# task 4
 class DeleteStatusMessageView(LoginRequiredMixin, DeleteView):
     ''' the view to delete a status message from a profile'''
     model = StatusMessage

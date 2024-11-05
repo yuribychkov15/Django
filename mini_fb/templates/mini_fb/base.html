@@ -12,22 +12,22 @@
     </head>
     <body>
         {% if user.is_authenticated %}
-            <p>Welcome, {{ user.username }}!</p>
+            <p style="font-size: 1.5rem; color: white;">Welcome, {{ user.username }}!</p>
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <button type="submit">Logout</button>
             </form>
         {% else %}
-            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'login' %}" class="nav-button">Login</a>
         {% endif %}
-        <main>
-            {% block content %}
-            {% endblock %}
-        </main>
         <nav>
             <a href="{% url 'create_profile' %}" class="nav-button">Create New Profile</a>
             <a href="{% url 'show_all_profiles' %}" class="nav-button">Show All Profiles</a>
         </nav>
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
         <footer>
             Our Mini FB for Soccer Players
         </footer>

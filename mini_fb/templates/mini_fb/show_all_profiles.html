@@ -28,13 +28,13 @@ Page is used to display all of our profiles -->
                     <img src="{{ profile.image_url }}" alt="{{ profile.first_name }}">
                 </a>
             </td>
-            <td>
+            <td style="font-size: 1.2em; font-family: 'Times New Roman', Times, serif;">
                 <a href="{% url 'show_profile' profile.pk %}">
                     {{ profile.first_name }}
                 </a>
             </td>
-            <td>{{ profile.last_name }}</td>
-            <td>{{ profile.city }}</td>
+            <td style="font-size: 1.2em; font-family: 'Times New Roman', Times, serif;">{{ profile.last_name }}</td>
+            <td style="font-size: 1.2em; font-family: 'Times New Roman', Times, serif;">{{ profile.city }}</td>
         </tr>
         {% endfor %}
     </tbody>
