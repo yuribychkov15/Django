@@ -1,0 +1,140 @@
+/* voter_analytics/static/voter_analytics/styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+nav {
+    background-color: #7c42c7;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+nav a {
+    color: #f4f4f9;
+    text-decoration: none;
+    margin-right: 1.5rem;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #c5cae9;
+}
+
+.container {
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    max-width: 1000px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    color: #7c42c7;
+    border-bottom: 2px solid #7c42c7;
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+form {
+    margin-bottom: 2rem;
+}
+
+form table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+form th {
+    text-align: left;
+    padding: 0.5rem;
+    color: #7c42c7;
+}
+
+form td {
+    padding: 0.5rem;
+}
+
+form select, form input[type="checkbox"], form button {
+    font-size: 1rem;
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    background-color: #7c42c7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 0.6rem 1.2rem;
+}
+
+.button-style {
+    background-color: #7c42c7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+
+form button:hover {
+    background-color: #8f66c5;
+}
+
+table.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+table.table th, table.table td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table.table th {
+    background-color: #7c42c7;
+    color: #fff;
+    font-weight: bold;
+}
+
+table.table a {
+    color: #7d7690;
+    text-decoration: underline;
+}
+
+table.table a:hover {
+    color: #4f5d7d;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.pagination li {
+    margin: 0.5rem;
+}
+
+.pagination a {
+    color: #2f3b59;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.pagination a:hover {
+    color: #4f5d7d;
+}
+

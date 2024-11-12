@@ -1,0 +1,24 @@
+<!-- voter_analytics/templates/voter_analytics/voter_detail.html
+Shows each voter and their information -->
+{% extends 'voter_analytics/base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2>Personal Information</h2>
+  <p>First Name: {{ voter.first_name }}</p>
+  <p>Last Name: {{ voter.last_name }}</p>
+  <p>Date of Birth: {{ voter.date_of_birth }}</p>
+
+  <h2>Address</h2>
+  <p>Street Address: {{ voter.street_number }} {{ voter.street_name }}, {{ voter.apartment_number }}</p>
+  <p>ZIP Code: {{ voter.zip_code }}</p>
+  <a href="https://www.google.com/maps/search/?api=1&query={{ voter.street_number }}+{{ voter.street_name }},+{{ voter.zip_code }}" target="_blank">Open in Google Maps</a>
+
+  <h2>Voting Information</h2>
+  <p>Party Affiliation: {{ voter.party_affiliation }}</p>
+  <p>Voter Score: {{ voter.voter_score }}</p>
+
+  <br>
+  <a href="{% url 'voters' %}" class="button-style">Back to Voter List</a>
+</div>
+{% endblock %}

@@ -1,0 +1,94 @@
+<!-- voter_analytics/templates/voter_analytics/graph.html -->
+
+{% extends 'voter_analytics/base.html' %}
+{% block content %}
+<div class="container">
+    <h3>Search Form</h3>
+    <form method="get" action="{% url 'graphs' %}">
+        <!-- filter our search which will change the graphs -->
+        <table>
+            <tr>
+                <th>Party Affiliation:</th>
+                <td>
+                    <select name="party_affiliation">
+                        <option value="">All parties</option>
+                        <option value="D">Democratic</option>
+                        <option value="R">Republican</option>
+                        <option value="CC">Constitution Party</option>
+                        <option value="L">Libertarian Party</option>
+                        <option value="T">Tea Party</option>
+                        <option value="O">Other</option>
+                        <option value="G">Green Party</option>
+                        <option value="J">Independent Party</option>
+                        <option value="Q">Reform Party</option>
+                        <option value="FF">Freedom Party</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Minimum Birth Year:</th>
+                <td>
+                    <select name="min_dob">
+                        <option value="">Select Year</option>
+                        {% for year in years %}
+                        <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Maximum Birth Year:</th>
+                <td>
+                    <select name="max_dob">
+                        <option value="">Select Year</option>
+                        {% for year in years %}
+                        <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Voter Score:</th>
+                <td>
+                    <select name="voter_score">
+                        <option value="">Select Score</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Voted in Elections:</th>
+                <td>
+                    <input type="checkbox" name="v20state" id="v20state"> 2020 State Election<br>
+                    <input type="checkbox" name="v21town" id="v21town"> 2021 Town Election<br>
+                    <input type="checkbox" name="v21primary" id="v21primary"> Primary Election<br>
+                    <input type="checkbox" name="v22general" id="v22general"> 2022 General Election<br>
+                    <input type="checkbox" name="v23town" id="v23town"> 2023 Town Election<br>
+                </td>
+            </tr>
+        </table>
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<!-- displays our graphs -->
+
+<div class="container">
+    <div>
+        <h2>Distribution of Voters by Year of Birth</h2>
+        <div>{{ year_chart|safe }}</div>
+
+        <h2>Distribution of Voters by Party Affiliation</h2>
+        <div>{{ party_chart|safe }}</div>
+
+        <h2>Distribution of Voters by Election Participation</h2>
+        <div>{{ election_chart|safe }}</div>
+    </div>
+</div>
+
+{% endblock %}

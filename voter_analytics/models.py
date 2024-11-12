@@ -1,7 +1,5 @@
 # vote_analytics/models.py
 from django.db import models
-import csv
-import os
 from django.conf import settings
 
 # Create your models here.
@@ -30,32 +28,41 @@ class Voter(models.Model):
         return f"{self.first_name} {self.last_name} - {self.precinct_number}"
     
 def load_data():
-        ''' Load data records from CSV file into Django model instances. '''
-        filename = '/Users/yuribychkov/Desktop/django/newton_voters.csv'
-        with open(filename) as f:
-            f.readline()  # discard headers
-            for line in f:
+    ''' Load data records from CSV file into Django model instances. '''
+
+    Voter.objects.all().delete()  # we clear existing records
+
+    filename = '/Users/yuribychkov/Desktop/django/newton_voters.csv'  # Update with your CSV file path
+    with open(filename) as f:
+        f.readline()  # discard headers
+        for line in f:
+            try:
                 line = line.strip()
                 fields = line.split(',')
-                # show which value in each field
 
-                # create instance of Vote object
+                # Strip whitespace and remove any unwanted characters
+                fields = [field.strip().replace('“', '').replace('”', '') for field in fields]
+
+                # create an  instance of Voter object
                 voter = Voter(
-                    last_name=fields[0],
-                    first_name=fields[1],
-                    street_number=fields[2],
-                    street_name=fields[3],
-                    apartment_number=fields[4],
-                    zip_code=fields[5],
-                    date_of_birth=fields[6],
-                    date_of_registration=fields[7],
-                    party_affiliation=fields[8],
-                    precinct_number=fields[9],
-                    v20state=fields[10] == 'True',
-                    v21town=fields[11] == 'True',
-                    v21primary=fields[12] == 'True',
-                    v22general=fields[13] == 'True',
-                    v23town=fields[14] == 'True',
-                    voter_score=fields[15],
+                    last_name=fields[1],
+                    first_name=fields[2],
+                    street_number=fields[3],
+                    street_name=fields[4],
+                    apartment_number=fields[5],
+                    zip_code=fields[6],  # make sure this is treated as a string
+                    date_of_birth=fields[7],  # make sure this is in YYYY-MM-DD format
+                    date_of_registration=fields[8],  # make sure this is in YYYY-MM-DD format
+                    party_affiliation=fields[9].strip(),
+                    precinct_number=fields[10].strip(), 
+                    v20state=fields[11].strip().upper() == 'TRUE',
+                    v21town=fields[12].strip().upper() == 'TRUE',
+                    v21primary=fields[13].strip().upper() == 'TRUE',
+                    v22general=fields[14].strip().upper() == 'TRUE',
+                    v23town=fields[15].strip().upper() == 'TRUE',
+                    voter_score=int(fields[16]),
                 )
+                voter.save()  # save our instance to the database
                 print(f'Created voter: {voter}')
+            except Exception as e:
+                print(f"Exception on {fields}: {e}")  # print the exception message

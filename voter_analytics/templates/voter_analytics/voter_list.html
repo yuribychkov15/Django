@@ -1,0 +1,124 @@
+<!-- voter_analytics/templates/voter_analytics/voter_list.html 
+Showcases all of our voters with a filter search -->
+{% extends 'voter_analytics/base.html' %}
+{% block content %}
+<div class="container">
+    <h3>Search Form</h3>
+    <form method="get" action="{% url 'voters' %}">
+        <table>
+            <tr>
+                <th>Party Affiliation:</th>
+                <td>
+                    <select name="party_affiliation">
+                        <option value="">All parties</option>
+                        <option value="D">Democratic</option>
+                        <option value="R">Republican</option>
+                        <option value="CC">Constitution Party</option>
+                        <option value="L">Libertarian Party</option>
+                        <option value="T">Tea Party</option>
+                        <option value="O">Other</option>
+                        <option value="G">Green Party</option>
+                        <option value="J">Independent Party</option>
+                        <option value="Q">Reform Party</option>
+                        <option value="FF">Freedom Party</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Minimum Birth Year:</th>
+                <td>
+                    <select name="min_dob">
+                        <option value="">Select Year</option>
+                        {% for year in years %}
+                        <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Maximum Birth Year:</th>
+                <td>
+                    <select name="max_dob">
+                        <option value="">Select Year</option>
+                        {% for year in years %}
+                        <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Voter Score:</th>
+                <td>
+                    <select name="voter_score">
+                        <option value="">Select Score</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Voted in Elections:</th>
+                <td>
+                    <input type="checkbox" name="voted_in_elections" value="v20state"> 2020 State Election<br>
+                    <input type="checkbox" name="voted_in_elections" value="v21town"> 2021 Town Election<br>
+                    <input type="checkbox" name="voted_in_elections" value="v21primary"> Primary Election<br>
+                    <input type="checkbox" name="voted_in_elections" value="v22general"> 2022 General Election<br>
+                    <input type="checkbox" name="voted_in_elections" value="v23town"> 2023 Town Election<br>
+                </td>
+            </tr>
+        </table>
+        <button type="submit" class="button-style">Search</button>
+    </form>
+
+    <!-- displays our voters -->
+
+    <h1>Voter List</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Date of Birth</th>
+                <th>Party</th>
+                <th>Voter Score</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for voter in voters %}
+            <tr>
+                <td>{{ voter.first_name }}</td>
+                <td>{{ voter.last_name }}</td>
+                <td>{{ voter.street_number }} {{ voter.street_name }}</td>
+                <td>{{ voter.date_of_birth|date:"M. d, Y" }}</td>
+                <td>{{ voter.party_affiliation }}</td>
+                <td>{{ voter.voter_score }}</td>
+                <td><a href="{% url 'voter' voter.pk %}">View Details</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No voters found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        <li>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</li>
+        {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+        {% endif %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}

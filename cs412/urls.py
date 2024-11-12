@@ -14,6 +14,7 @@ urlpatterns = [
     path("restaurant/", include("restaurant.urls")), # delegate work to the restaurant url
     path("blog/", include("blog.urls")), # delegate work to the restaurant url
     path("mini_fb/", include("mini_fb.urls")), # delegate work to the mini_fb url
+    path("voter_analytics/", include('voter_analytics.urls')), # delegate work to the voter_analytics url
 ] 
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
