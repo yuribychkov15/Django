@@ -1,0 +1,13 @@
+<!-- project/templates/project/review_detail.html -->
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <div class="card">
+        <h1>Review for {{ review.game.title }}</h1>
+        <p class="mb-1">Rating: {{ review.rating }}/5</p>
+        <p class="mb-1">By: {{ review.user.username }}</p>
+        <p class="mb-1">Date: {{ review.review_date }}</p>
+        <p class="mb-1">"{{ review.review_text }}"</p>
+        <a href="{% url 'game_detail' review.game.pk %}">View Game</a>
+    </div>
+{% endblock %}

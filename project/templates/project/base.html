@@ -1,0 +1,28 @@
+<!-- project/templates/project/base.html 
+ A template with common HTML code that will be re-used by 
+ all of the other templates.
+ -->
+
+ <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Vapor</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'project/styles.css' %}">
+    </head>
+    <body>
+        <a href="{% url 'game_list' %}"><h1>Vapor</h1></a>
+        <nav>
+            <a href="{% url 'game_list' %}" class="nav-button">Games</a>
+            <a href="{% url 'review_list' %}" class="nav-button">Reviews</a>
+            <a href="{% url 'collection_list' %}" class="nav-button">Collections</a>
+        </nav>
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+        <footer>
+            Our Gaming Reivew App called Vapor
+        </footer>
+    </body>
+</html>

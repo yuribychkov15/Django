@@ -1,0 +1,28 @@
+<!-- project/templates/project/game_detail.html -->
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <h1>{{ game.title }}</h1>
+    <div class="card">
+        {% if game.cover_image %}
+            <img src="{{ game.cover_image.url }}" alt="{{ game.title }}">
+        {% endif %}
+        <p class="mb-1">Genre: {{ game.genre }}</p>
+        <p class="mb-1">Platform: {{ game.platform }}</p>
+        <p class="mb-1">Developer: {{ game.developer }}</p>
+        <p class="mb-1">Release Date: {{ game.release_date }}</p>
+    </div>
+
+    <h2>Reviews</h2>
+    {% for review in game.review_set.all %}
+        <div class="card">
+            <p class="mb-1">Rating: {{ review.rating }}/5</p>
+            <p class="mb-1">By: {{ review.user.username }}</p>
+            <p class="mb-1">Date: {{ review.review_date }}</p>
+            <p>"{{ review.review_text }}"</p>
+            <hr>
+        </div>
+    {% empty %}
+        <p>No reviews yet.</p>
+    {% endfor %}
+{% endblock %}
