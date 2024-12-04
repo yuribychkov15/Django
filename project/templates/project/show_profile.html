@@ -1,0 +1,29 @@
+<!-- project/templates/project/show_profile.html -->
+{% extends 'project/base.html' %}
+
+{% block content %}
+<h2>{{ profile.user.username }}'s Profile</h2>
+
+<section class="profile-info">
+    <h3>Profile Information</h3>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Favorite Genre:</strong> {{ profile.favorite_genre }}</p>
+    <p><strong>Favorite Game:</strong> {{ profile.favorite_game }}</p>
+    <p><strong>First Game Played:</strong> {{ profile.first_game_played }}</p>
+    <p><strong>Gaming Platform Preference:</strong> {{ profile.gaming_platform_preference }}</p>
+    <p><strong>Gaming Goals:</strong> {{ profile.gaming_goals }}</p>
+</section>
+
+<section class="game-collections">
+    <h3>Your Game Collections</h3>
+    <ul>
+        {% if user.collections.all %}
+            {% for game in user.collections.all %}
+                <li>{{ game.name }}</li>
+            {% endfor %}
+        {% else %}
+            <li>You have no games in your collection yet.</li>
+        {% endif %}
+    </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,13 @@
+<!-- mini_fb/templates/projectcreate_profile_form.html -->
+{% extends 'project/base.html' %}
+
+{% block content %}
+<h2>Create Profile</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ user_create.as_p }}
+    {{ form.as_p }}
+    <button type="submit">Create Profile</button>
+    <button type="button" onclick="history.back()">Cancel</button>
+</form>
+{% endblock %}

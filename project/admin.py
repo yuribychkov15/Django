@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Game)
 admin.site.register(Review)
 admin.site.register(Collection)
+admin.site.register(Profile)

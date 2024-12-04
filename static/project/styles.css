@@ -15,15 +15,41 @@ body {
     padding: 20px;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    height: auto;
+}
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.nav-button {
+    margin-top: 1rem;
+    font-family: 'Pixelify Sans', system-ui; /* Ensure the font is applied */
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.nav-button:hover {
+    background-color: #ddd;
+}
+
 /* Navigation */
 nav {
-    background-color: #6D6875;
+    background-color: #8b8b8d;
     padding: 1rem;
     margin-bottom: 2rem;
 }
 
 nav a {
-    color: #FFCDB2;
+    color: #fcc3a4;
     text-decoration: none;
     margin-right: 1rem;
     padding: 0.5rem;

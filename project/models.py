@@ -1,9 +1,24 @@
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.urls import reverse
 
 # Create your models here.
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='project_profile')
+    favorite_genre = models.CharField(max_length=100)
+    favorite_game = models.CharField(max_length=100)
+    first_game_played = models.CharField(max_length=100)
+    gaming_platform_preference = models.CharField(max_length=100)
+    gaming_goals = models.TextField()
+
+    def get_absolute_url(self):
+        '''Return a URL to display this profile'''
+        return reverse('show_profile', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return self.user.username
 
 class Game(models.Model):
     ''' Encapsulates the model for an individual game '''
@@ -21,8 +36,7 @@ class Review(models.Model):
     ''' Encapsulates the model for our reviews '''
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    # https://stackoverflow.com/questions/849142/how-to-limit-the-maximum-value-of-a-numeric-field-in-a-django-model
-    rating = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    rating = models.IntegerField(default=0, blank=True)
     review_text = models.TextField()
     review_date = models.DateTimeField(default=timezone.now)
 
