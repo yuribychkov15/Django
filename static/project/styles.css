@@ -136,13 +136,13 @@ a:hover {
 
 .profile_image.circular {
     border-radius: 50%;
-    width: 150px; /* Adjust size as needed */
-    height: 150px; /* Adjust size as needed */
+    width: 150px; 
+    height: 150px;
 }
 
 .profile-details {
     flex: 1;
-    max-width: 300px; /* Adjust width as needed */
+    max-width: 300px; 
 }
 
 .game-collections {
