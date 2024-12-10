@@ -1,0 +1,21 @@
+<!-- project/templates/project/user_list.html
+Page is used to show all users --> 
+
+{% extends 'project/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Registered Users</h1>
+    <div class="user-grid">
+        {% for user in users %}
+            <div class="user-card">
+                {% if user.project_profile and user.project_profile.profile_image %}
+                    <img src="{{ user.project_profile.profile_image.url }}" alt="{{ user.username }}'s Profile Picture" class="profile_image circular">
+                {% else %}
+                    <img src="{% static 'project/default_image.jpg' %}" alt="Default Profile Picture" class="profile_image circular">
+                {% endif %}
+                <a href="{% url 'show_profile' user.project_profile.pk %}">{{ user.username }}</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

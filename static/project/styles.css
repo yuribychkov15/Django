@@ -32,13 +32,22 @@ header {
 
 .nav-button {
     margin-top: 1rem;
-    font-family: 'Pixelify Sans', system-ui; /* Ensure the font is applied */
+    font-family: 'Pixelify Sans', system-ui;
     text-decoration: none;
     border-radius: 5px;
+    font-size: 1em;
+    padding: 10px 20px; 
 }
 
 .nav-button:hover {
     background-color: #ddd;
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem; 
 }
 
 /* Navigation */
@@ -70,6 +79,12 @@ h2 {
     margin-bottom: 1rem;
 }
 
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
 /* Card style for items */
 .card {
     background-color: #FFB4A2;
@@ -89,6 +104,7 @@ img {
     border-radius: 20%;
 }
 
+
 /* Links */
 a {
     color: #B5838D;
@@ -102,10 +118,156 @@ a:hover {
 /* Basic Grid */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
 }
+
+.profile-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    flex: 0 0 auto;
+    margin-right: 6rem;
+}
+
+.profile_image.circular {
+    border-radius: 50%;
+    width: 150px; /* Adjust size as needed */
+    height: 150px; /* Adjust size as needed */
+}
+
+.profile-details {
+    flex: 1;
+    max-width: 300px; /* Adjust width as needed */
+}
+
+.game-collections {
+    margin-top: 20px;
+}
+
 
 /* Utility Classes */
 .mb-1 { margin-bottom: 1rem; }
 .text-center { text-align: center; }
+
+/* textbox fix styling */
+input[type="text"],
+input[type="date"],
+input[type="file"] {
+    border-radius: 5px;
+    border: 1px solid #E5989B;
+    padding: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-game, .form-create {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-login input[type="text"],
+.form-login input[type="password"],
+.form-create input[type="text"],
+.form-create input[type="password"] {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+    border: 1px solid #E5989B;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+/* Fieldset styling */
+fieldset {
+    border: none;
+    margin-bottom: 15px;
+}
+
+/* Legend styling */
+legend {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Label and input styling */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Collections */
+
+.collection-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.collection-list li {
+    list-style-type: none;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.cover_image {
+    width: 150px;
+    height: 150px; 
+    object-fit: cover;
+    border-radius: 10%;
+}
+
+/* User List */
+.user-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.user-card {
+    text-align: center;
+    padding: 1rem;
+    background-color: #FFB4A2;
+    border-radius: 5px;
+}
+
+.profile_image.circular {
+    border-radius: 50%;
+    width: 250px; 
+    height: 250px; 
+    border: 3px solid #E5989B;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+}
+
+/* Grid for review list */
+
+.grid-reviews {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}

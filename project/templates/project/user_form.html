@@ -1,0 +1,13 @@
+<!-- project/templates/project/user_form.html
+Page is used to show create a user --> 
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <h1>Create a New User</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="nav-button">Create User</button>
+    </form>
+{% endblock %}

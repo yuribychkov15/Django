@@ -1,0 +1,12 @@
+<!-- project/templates/project/review_form.html -->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <h1>Add a New Review</h1>
+    <form method="post" class="form-review">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="nav-button">Add a Review</button>
+    </form>
+{% endblock %}

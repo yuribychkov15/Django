@@ -3,18 +3,24 @@
 
 {% block content %}
     <h1>Collections</h1>
-    {% for collection in collections %}
-        <div class="card">
-            <h2>{{ collection.user.username }}'s Collection</h2>
-            <p class="mb-1">Game: {{ collection.game.title }}</p>
-            <div class="card-image-container">
-                {% if collection.game.cover_image %}
-                    <img src="{{ collection.game.cover_image.url }}" alt="{{ collection.game.title }}" class="cover_image">
-                {% endif %}
-            </div>
-            <p class="mb-1">Added: {{ collection.date_added }}</p>
-            <a href="{% url 'game_detail' collection.game.pk %}">View Game</a>
-            <hr>
+    {% for user in users %}
+    <div class="card" style="margin-bottom: 4rem;">
+        <h2>{{ user.username }}'s Collection</h2>
+        <div class="collection-grid">
+            {% for collection in user.collection_set.all %}
+                <div>
+                    <p class="mb-1">Game: {{ collection.game.title }}</p>
+                    <div class="card-image-container">
+                        {% if collection.game.cover_image %}
+                            <img src="{{ collection.game.cover_image.url }}" alt="{{ collection.game.title }}" class="cover_image">
+                        {% endif %}
+                    </div>
+                    <p class="mb-1">Added: {{ collection.date_added }}</p>
+                    <a href="{% url 'game_detail' collection.game.pk %}">View Game</a>
+                    <hr>
+                </div>
+            {% endfor %}
         </div>
+    </div>
     {% endfor %}
 {% endblock %}

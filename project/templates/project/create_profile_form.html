@@ -1,13 +1,54 @@
-<!-- mini_fb/templates/projectcreate_profile_form.html -->
+<!-- project/templates/project/create_profile_form.html -->
 {% extends 'project/base.html' %}
 
 {% block content %}
 <h2>Create Profile</h2>
-<form method="post">
+<form method="post" enctype="multipart/form-data" class="form-create">
     {% csrf_token %}
-    {{ user_create.as_p }}
-    {{ form.as_p }}
-    <button type="submit">Create Profile</button>
-    <button type="button" onclick="history.back()">Cancel</button>
+    <fieldset>
+        <legend>Account Information</legend>
+        <div class="form-group">
+            {{ user_create.username.label_tag }}
+            {{ user_create.username }}
+        </div>
+        <div class="form-group">
+            {{ user_create.password1.label_tag }}
+            {{ user_create.password1 }}
+        </div>
+        <div class="form-group">
+            {{ user_create.password2.label_tag }}
+            {{ user_create.password2 }}
+        </div>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Profile Information</legend>
+        <div class="form-group">
+            {{ form.profile_image.label_tag }}
+            {{ form.profile_image }}
+        </div>
+        <div class="form-group">
+            {{ form.favorite_genre.label_tag }}
+            {{ form.favorite_genre }}
+        </div>
+        <div class="form-group">
+            {{ form.favorite_game.label_tag }}
+            {{ form.favorite_game }}
+        </div>
+        <div class="form-group">
+            {{ form.first_game_played.label_tag }}
+            {{ form.first_game_played }}
+        </div>
+        <div class="form-group">
+            {{ form.gaming_platform_preference.label_tag }}
+            {{ form.gaming_platform_preference }}
+        </div>
+        <div class="form-group">
+            {{ form.gaming_goals.label_tag }}
+            {{ form.gaming_goals }}
+        </div>
+    </fieldset>
+    <button type="submit" class="nav-button">Create Profile</button>
+    <button type="button" class="nav-button" onclick="history.back()">Cancel</button>
 </form>
 {% endblock %}

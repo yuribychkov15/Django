@@ -2,11 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='project_profile')
+    profile_image = models.ImageField(upload_to='profile_images/')
     favorite_genre = models.CharField(max_length=100)
     favorite_game = models.CharField(max_length=100)
     first_game_played = models.CharField(max_length=100)
@@ -36,7 +38,11 @@ class Review(models.Model):
     ''' Encapsulates the model for our reviews '''
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    rating = models.IntegerField(default=0, blank=True)
+    rating = models.IntegerField(
+        default=0,
+        blank=True,
+        validators=[MinValueValidator(0), MaxValueValidator(5)]
+    )
     review_text = models.TextField()
     review_date = models.DateTimeField(default=timezone.now)
 

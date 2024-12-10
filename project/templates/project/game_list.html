@@ -11,12 +11,13 @@
                 {% if game.cover_image %}
                     <img src="{{ game.cover_image.url }}" alt="{{ game.title }}">
                 {% endif %}
-                <p class="mb-1">Genre: {{ game.genre }}</p>
-                <p class="mb-1">Platform: {{ game.platform }}</p>
-                <p class="mb-1">Developer: {{ game.developer }}</p>
-                <p class="mb-1">Release Date: {{ game.release_date }}</p>
                 <a href="{% url 'game_detail' game.pk %}" style="color:bisque">View Details</a>
             </div>
         {% endfor %}
     </div>
+    {% if user.is_authenticated %}
+        <div class="button-container">
+            <a href="{% url 'game_add' %}" class="nav-button">Add New Game</a>
+        </div>
+    {% endif %}
 {% endblock %}

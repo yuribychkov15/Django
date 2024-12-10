@@ -20,9 +20,25 @@
             <p class="mb-1">By: {{ review.user.username }}</p>
             <p class="mb-1">Date: {{ review.review_date }}</p>
             <p>"{{ review.review_text }}"</p>
+            {% if user.is_authenticated and user == review.user %}
+                <a href="{% url 'review_update' review.pk %}" class="nav-button">Edit</a>
+                <a href="{% url 'review_delete' review.pk %}" class="nav-button">Delete</a>
+            {% endif %}
             <hr>
         </div>
     {% empty %}
         <p>No reviews yet.</p>
     {% endfor %}
+    {% if user.is_authenticated %}
+    <form action="{% url 'add_to_collection' game.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="nav-button">Add to Collection</button>
+    </form>
+
+    <form action="{% url 'review_add' game.id %}" method="post" class="form-review">
+        {% csrf_token %}
+        {{ review_form.as_p }}
+        <button type="submit" class="nav-button">Add a Review</button>
+    </form>
+{% endif %}
 {% endblock %}

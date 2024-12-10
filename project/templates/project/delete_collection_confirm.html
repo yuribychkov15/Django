@@ -1,0 +1,14 @@
+<!-- project/templates/project/delete_collection_confirm.html
+Confirmation if user wants to delete an item from their collection --> 
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <h1>Confirm Deletion</h1>
+    <p>Are you sure you want to remove {{ collection.game.title }} from your collection?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="nav-button">Confirm</button>
+        <a href="{% url 'show_profile' collection.user.project_profile.pk %}" class="nav-button">Cancel</a>
+    </form>
+{% endblock %}

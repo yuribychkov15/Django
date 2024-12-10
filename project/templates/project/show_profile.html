@@ -4,22 +4,43 @@
 {% block content %}
 <h2>{{ profile.user.username }}'s Profile</h2>
 
-<section class="profile-info">
-    <h3>Profile Information</h3>
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Favorite Genre:</strong> {{ profile.favorite_genre }}</p>
-    <p><strong>Favorite Game:</strong> {{ profile.favorite_game }}</p>
-    <p><strong>First Game Played:</strong> {{ profile.first_game_played }}</p>
-    <p><strong>Gaming Platform Preference:</strong> {{ profile.gaming_platform_preference }}</p>
-    <p><strong>Gaming Goals:</strong> {{ profile.gaming_goals }}</p>
+<section class="profile-info-container">
+    <div class="profile-image">
+        {% if profile.profile_image %}
+            <img src="{{ profile.profile_image.url }}" class="profile_image circular" alt="{{ profile.user.username }}'s Profile Picture">
+        {% endif %}
+    </div>
+    <div class="profile-details">
+        <h3>Profile Information</h3>
+        <p><strong>Favorite Genre:</strong> {{ profile.favorite_genre }}</p>
+        <p><strong>Favorite Game:</strong> {{ profile.favorite_game }}</p>
+        <p><strong>First Game Played:</strong> {{ profile.first_game_played }}</p>
+        <p><strong>Gaming Platform Preference:</strong> {{ profile.gaming_platform_preference }}</p>
+        <p><strong>Gaming Goals:</strong> {{ profile.gaming_goals }}</p>
+        {% if user.is_authenticated and user == profile.user %}
+            <a href="{% url 'edit_profile' profile.pk %}" class="nav-button">Edit Profile</a>
+        {% endif %}
+    </div>
 </section>
 
 <section class="game-collections">
     <h3>Your Game Collections</h3>
-    <ul>
-        {% if user.collections.all %}
-            {% for game in user.collections.all %}
-                <li>{{ game.name }}</li>
+    <ul class="collection-list">
+        {% if profile.user.collection_set.all %}
+            {% for collection in profile.user.collection_set.all %}
+                <li>
+                    <a href="{% url 'game_detail' collection.game.pk %}">
+                        {% if collection.game.cover_image %}
+                            <img src="{{ collection.game.cover_image.url }}" alt="{{ collection.game.title }}" class="cover_image">
+                        {% endif %}
+                    </a>
+                    {% if user.is_authenticated and user == profile.user %}
+                        <form action="{% url 'delete_collection' collection.pk %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-button">Delete</button>
+                        </form>
+                    {% endif %}
+                </li>
             {% endfor %}
         {% else %}
             <li>You have no games in your collection yet.</li>

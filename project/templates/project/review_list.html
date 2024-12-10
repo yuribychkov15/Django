@@ -3,20 +3,31 @@
 
 {% block content %}
     <h1>Reviews</h1>
-    {% for review in reviews %}
-        <div class="card">
-            <h2>{{ review.game.title }}</h2>
-            <div class="card-image-container">
-                {% if review.game.cover_image %}
-                    <img src="{{ review.game.cover_image.url }}" alt="{{ collection.game.title }}" class="cover_image">
+    <div class="grid-reviews">
+        {% for review in reviews %}
+            <div class="card">
+                <h2>{{ review.game.title }}</h2>
+                <div class="card-image-container">
+                    {% if review.game.cover_image %}
+                        <img src="{{ review.game.cover_image.url }}" alt="{{ collection.game.title }}" class="cover_image">
+                    {% endif %}
+                </div>
+                <p class="mb-1">Rating: {{ review.rating }}/5</p>
+                <p class="mb-1">By: {{ review.user.username }}</p>
+                <p class="mb-1">Date: {{ review.review_date }}</p>
+                <p class="mb-1">"{{ review.review_text }}"</p>
+                <a href="{% url 'review_detail' review.pk %}" class="nav-button">View Full Review</a>
+                {% if user.is_authenticated and user == review.user %}
+                    <a href="{% url 'review_update' review.pk %}" class="nav-button">Edit</a>
+                    <a href="{% url 'review_delete' review.pk %}" class="nav-button">Delete</a>
                 {% endif %}
+                <hr>
             </div>
-            <p class="mb-1">Rating: {{ review.rating }}/5</p>
-            <p class="mb-1">By: {{ review.user.username }}</p>
-            <p class="mb-1">Date: {{ review.review_date }}</p>
-            <p class="mb-1">"{{ review.review_text }}"</p>
-            <a href="{% url 'review_detail' review.pk %}">View Full Review</a>
-            <hr>
+        {% endfor %}
+    </div>
+    {% if user.is_authenticated %}
+        <div class="button-container">
+            <a href="{% url 'review_add' %}" class="nav-button">Add New Review</a>
         </div>
-    {% endfor %}
+    {% endif %}
 {% endblock %}

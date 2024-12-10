@@ -1,0 +1,15 @@
+<!-- project/templates/project/game_form.html 
+ A template with common HTML code that will be used to add a game only
+ if user is valid
+ -->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <h1>Add a New Game</h1>
+    <form method="post" enctype="multipart/form-data" class="form-game">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="nav-button">Add Game</button>
+    </form>
+{% endblock %}

@@ -6,7 +6,7 @@ Page is used to show login for a user -->
 {% block content %}
 <body>
     <h1>Login</h1>
-    <form method="post" action="{% url 'login' %}">
+    <form method="post" action="{% url 'login' %}" class="form-login">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="hidden" name="next" value="{% url 'game_list' %}">
