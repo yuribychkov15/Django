@@ -24,7 +24,7 @@ db.sqlite3-journal
 # Static and media files
 # staticfiles/
 # static/
-media/
+# media/
 
 # Django cache files
 *.log
